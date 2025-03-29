@@ -4,7 +4,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
-import { BiFolder } from "react-icons/bi";
+import { IoCalendarOutline } from "react-icons/io5";
 import { useAuth } from '../context/AuthContext';
 
 export default function ASidebar() {
@@ -20,7 +20,7 @@ export default function ASidebar() {
     },
     { 
       path: '/book-appointments', 
-      icon: BiFolder, 
+      icon: IoCalendarOutline, 
       label: 'Book Appointments' 
     },
   ];
@@ -38,22 +38,22 @@ export default function ASidebar() {
   return (
     <div className="flex flex-col h-screen w-64 text-gray-800 overflow-y-auto px-3 py-4" style={{backgroundColor: "#101828"}}>
       {/* Header */}
-      <div className="flex justify-center items-center mb-4 mr-2">
+      <div className="flex justify-center items-center mb-4">
         <div className="rounded-xl p-3 w-80 bg-white/30 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full overflow-hidden bg-gray-200">
               <img 
-                src={user?.avatar || '/default-avatar.png'} 
+                src={user?.avatar || '/My Current Photo.jpg'} 
                 alt="Profile" 
                 className="h-full w-full object-cover" 
               />
             </div>
             <div className="flex-1">
-              <h5 className="text-xs font-medium text-white">
-                {user?.name || 'User'}
+              <h5 className="text-sm font-medium text-white">
+                {user?.name || 'Namachi S'}
               </h5>
-              <p className="text-xs text-gray-400">
-                {user?.email || '@user'}
+              <p className="text-sm text-gray-300">
+                {user?.email || '@namachis'}
               </p>
             </div>
             <IoIosArrowForward className="text-gray-400" />
