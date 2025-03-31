@@ -37,7 +37,7 @@ export default function Navbar({ onDateRangeSelect }) {
         {/* Left: Dental Branding */}
         <div className="flex items-center space-x-1"> {/* Align image & text */}
           {/* Image Before Branding */}
-          <img src="../public/teeth.png" alt="Dental Logo" className="w-13 h-10" /> 
+          <img src="../public/teeth.png" alt="Dental Logo" className="w-13 h-12" /> 
 
           <div className="flex flex-col">
             <h1 className="font-bold text-[#13de00]" style={{fontSize: "18px"}}>VSK Dental Care</h1> {/* Green Text */}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
     Box,
     Typography,
@@ -26,6 +27,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 
 const Dashboard = () => {
+    const navigate = useNavigate(); // Initialize the navigate function
     const [tabValue, setTabValue] = useState(0);
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedOpenSlot, setSelectedOpenSlot] = useState(null);
@@ -217,18 +219,30 @@ const Dashboard = () => {
         });
     };
 
+    // const handleOpenSlotClick = (appointment) => {
+    //     if (appointment.isOpen) {
+    //         setSelectedOpenSlot(appointment);
+    //         setNewAppointment({
+    //             patientName: '',
+    //             slotTime: appointment.slotTime,
+    //             treatmentType: 'Regular Checkup',
+    //             phoneNumber: '',
+    //             date: new Date(appointment.date).toISOString().split('T')[0],
+    //             isOpen: false
+    //         });
+    //         setOpenDialog(true);
+    //     }
+    // };
+
     const handleOpenSlotClick = (appointment) => {
         if (appointment.isOpen) {
-            setSelectedOpenSlot(appointment);
-            setNewAppointment({
-                patientName: '',
-                slotTime: appointment.slotTime,
-                treatmentType: 'Regular Checkup',
-                phoneNumber: '',
-                date: new Date(appointment.date).toISOString().split('T')[0],
-                isOpen: false
+            // Navigate to the book-appointments page with the slot details
+            navigate('/book-appointments', {
+                state: {
+                    slotTime: appointment.slotTime,
+                    date: appointment.date
+                }
             });
-            setOpenDialog(true);
         }
     };
 
@@ -365,14 +379,14 @@ const Dashboard = () => {
                 variant="fullWidth"
                 sx={{
                   '& .MuiTab-root': { 
-                    fontWeight: 600, // Semibold
+                    fontWeight: 500, // Semibold
                     color: '#64748B' // Unselected tab color (slate-500)
                   },
                   '& .Mui-selected': { 
-                    color: '#101828 !important' // Selected tab color
+                    color: '#101828 !important' // Selected tab color 1976d2
                   },
                   '& .MuiTabs-indicator': { 
-                    backgroundColor: '#101828' // Indicator color matches selected tab
+                    backgroundColor: '#101828' // Indicator color matches selected tab 1976d2
                   }
                 }}
               >
@@ -382,7 +396,7 @@ const Dashboard = () => {
             </Box>
 
             <TableContainer component={Paper} sx={{ boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderRadius: 2 }}>
-                <Table sx={{ minWidth: 650 }}>
+                <Table sx={{ minWidth: 650, tableLayout: 'fixed' }}>
                     <TableHead sx={{ backgroundColor: '#313131' }}>
                         <TableRow>
                             <TableCell sx={{ fontWeight: 'bold', color: 'white', paddingLeft: "40px" }}>Status</TableCell>
@@ -400,73 +414,81 @@ const Dashboard = () => {
                             const timeRange = `${formatTime(appointment.slotTime)} - ${formatTime(endTime)}`;
                             
                             return (
-                                <TableRow 
-                                    key={appointment.id}
+                            <TableRow 
+                                key={appointment.id}
+                                sx={{ 
+                                height: '48px',
+                                '&:nth-of-type(odd)': { backgroundColor: '#fafafa' },
+                                '&:hover': { 
+                                    backgroundColor: appointment.isOpen ? '#f0f9ff' : '#f0f0f0',
+                                    cursor: appointment.isOpen ? 'pointer' : 'default'
+                                }
+                                }}
+                                onClick={() => appointment.isOpen && handleOpenSlotClick(appointment)}
+                            >
+                                <TableCell sx={{ py: 1, px: 2 }}>
+                                <Box 
                                     sx={{ 
-                                        '&:nth-of-type(odd)': { backgroundColor: '#fafafa' },
-                                        '&:hover': { 
-                                            backgroundColor: appointment.isOpen ? '#f0f9ff' : '#f0f0f0',
-                                            cursor: appointment.isOpen ? 'pointer' : 'default'
-                                        }
+                                    display: 'inline-flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    backgroundColor: appointment.isOpen ? '#4ECCA3' : '#FF416C', 
+                                    color: 'white', 
+                                    py: 0.3, 
+                                    px: 1, 
+                                    borderRadius: 1, 
+                                    fontSize: '0.7rem', 
+                                    fontWeight: 'bold',
+                                    width: '80px',
+                                    minWidth: '80px',
+                                    whiteSpace: 'nowrap',
+                                    textAlign: 'center',
+                                    lineHeight: '1.2'
                                     }}
-                                    onClick={() => appointment.isOpen && handleOpenSlotClick(appointment)}
-                                >
-                                    <TableCell>
-                                      <Box 
+                                > 
+                                    {appointment.isOpen ? 'OPEN SLOT' : 'BOOKED'} 
+                                </Box>
+                                </TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>{appointment.isOpen ? "—" : appointment.patientName}</TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>{timeRange}</TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>{appointment.isOpen ? "—" : appointment.treatmentType}</TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>{appointment.isOpen ? "—" : appointment.phoneNumber}</TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>{appointment.date}</TableCell>
+                                <TableCell sx={{ py: 1, px: 2 }}>
+                                {!appointment.isOpen && (
+                                    <Box sx={{ display: 'flex', gap: 0.5 }}>
+                                    <Button 
+                                        size="small" 
+                                        variant="outlined" 
                                         sx={{ 
-                                          display: 'inline-flex',
-                                          justifyContent: 'center',
-                                          alignItems: 'center',
-                                          backgroundColor: appointment.isOpen ? '#4ECCA3' : '#FF416C', 
-                                          color: 'white', 
-                                          py: 0.5, 
-                                          px: 1.5, 
-                                          borderRadius: 1, 
-                                          fontSize: '0.75rem', 
-                                          fontWeight: 'bold',
-                                          width: '90px', // Increased width to accommodate text
-                                          minWidth: '90px', // Ensures minimum width
-                                          whiteSpace: 'nowrap', // Prevents text wrapping
-                                          textAlign: 'center' // Ensures text is centered
+                                        borderColor: '#4ECCA3', 
+                                        color: '#4ECCA3',
+                                        '&:hover': { borderColor: '#3da683', backgroundColor: 'rgba(78, 204, 163, 0.1)' },
+                                        minWidth: '60px',
+                                        py: 0.5,
+                                        fontSize: '0.75rem'
                                         }}
-                                      > 
-                                        {appointment.isOpen ? 'OPEN SLOT' : 'BOOKED'} 
-                                      </Box>
-                                    </TableCell>
-                                    <TableCell>{appointment.isOpen ? "—" : appointment.patientName}</TableCell>
-                                    <TableCell>{timeRange}</TableCell>
-                                    <TableCell>{appointment.isOpen ? "—" : appointment.treatmentType}</TableCell>
-                                    <TableCell>{appointment.isOpen ? "—" : appointment.phoneNumber}</TableCell>
-                                    <TableCell>{appointment.date}</TableCell>
-                                    <TableCell>
-                                        {!appointment.isOpen && (
-                                            <Box sx={{ display: 'flex', gap: 1 }}>
-                                                <Button 
-                                                    size="small" 
-                                                    variant="outlined" 
-                                                    sx={{ 
-                                                        borderColor: '#4ECCA3', 
-                                                        color: '#4ECCA3',
-                                                        '&:hover': { borderColor: '#3da683', backgroundColor: 'rgba(78, 204, 163, 0.1)' }
-                                                    }}
-                                                >
-                                                    Edit
-                                                </Button>
-                                                <Button 
-                                                    size="small" 
-                                                    variant="outlined" 
-                                                    sx={{ 
-                                                        borderColor: '#FF416C', 
-                                                        color: '#FF416C',
-                                                        '&:hover': { borderColor: '#e53256', backgroundColor: 'rgba(255, 65, 108, 0.1)' } 
-                                                    }}
-                                                >
-                                                    Cancel
-                                                </Button>
-                                            </Box>
-                                        )}
-                                    </TableCell>
-                                </TableRow>
+                                    >
+                                        Edit
+                                    </Button>
+                                    <Button 
+                                        size="small" 
+                                        variant="outlined" 
+                                        sx={{ 
+                                        borderColor: '#FF416C', 
+                                        color: '#FF416C',
+                                        '&:hover': { borderColor: '#e53256', backgroundColor: 'rgba(255, 65, 108, 0.1)' },
+                                        minWidth: '60px',
+                                        py: 0.5,
+                                        fontSize: '0.75rem'
+                                        }}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    </Box>
+                                )}
+                                </TableCell>
+                            </TableRow>
                             );
                         })}
                     </TableBody>
