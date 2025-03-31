@@ -574,7 +574,7 @@ export default function BookAppointment() {
                               </InputAdornment>
                             ),
                           }}
-                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2, minWidth: 100 } }}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6} md={4}>
@@ -591,7 +591,7 @@ export default function BookAppointment() {
                               </InputAdornment>
                             ),
                           }}
-                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2,minWidth: 300 } }}
+                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2, minWidth: 300 } }}
                         >
                           <MenuItem value="male">Male</MenuItem>
                           <MenuItem value="female">Female</MenuItem>
@@ -647,7 +647,7 @@ export default function BookAppointment() {
                               </InputAdornment>
                             ),
                           }}
-                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2, minWidth: 450 } }}
                         />
                       </Grid>
                     </Grid>
