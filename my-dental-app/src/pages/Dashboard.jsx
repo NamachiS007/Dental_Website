@@ -397,7 +397,7 @@ const Dashboard = () => {
 
             <TableContainer component={Paper} sx={{ boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderRadius: 2 }}>
                 <Table sx={{ minWidth: 650, tableLayout: 'fixed' }}>
-                    <TableHead sx={{ backgroundColor: '#313131' }}>
+                    <TableHead sx={{ backgroundColor: '#101828' }}>
                         <TableRow>
                             <TableCell sx={{ fontWeight: 'bold', color: 'white', paddingLeft: "40px" }}>Status</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', color: 'white', paddingLeft: "5px" }}>Patient Name</TableCell>
