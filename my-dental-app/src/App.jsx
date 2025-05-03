@@ -41,8 +41,8 @@ import MainLayout from './layouts/MainLayout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import BookAppointment from './pages/BookAppointments';
-// import Appointments from './pages/Appointments';
-// import Settings from './pages/Settings';
+import HistoryofAppointments from './pages/HistoryofAppointments';
+import TreatmentDetails from './pages/UserTreatmentDetails';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
@@ -61,8 +61,8 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/book-appointments" element={<BookAppointment />} />
-            {/* <Route path="/appointments" element={<Appointments />} />
-            <Route path="/settings" element={<Settings />} /> */}
+            <Route path="/treatment-details" element={<TreatmentDetails />} />
+            <Route path="/history-of-appointments" element={<HistoryofAppointments />} />
           </Route>
         </Routes>
       </AuthProvider>

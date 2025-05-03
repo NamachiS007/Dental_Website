@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
+import { RiFileHistoryLine } from "react-icons/ri";
+import { MdOutlineDatasetLinked } from "react-icons/md";
 import { useAuth } from '../context/AuthContext';
 
 export default function ASidebar() {
@@ -22,6 +24,16 @@ export default function ASidebar() {
       path: '/book-appointments', 
       icon: IoCalendarOutline, 
       label: 'Book Appointments' 
+    },
+    { 
+      path: '/history-of-appointments', 
+      icon: RiFileHistoryLine, 
+      label: 'History of Appointments' 
+    },
+    { 
+      path: '/treatment-details', 
+      icon: MdOutlineDatasetLinked, 
+      label: 'User Treatment Details' 
     },
   ];
 

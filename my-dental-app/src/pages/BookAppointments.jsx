@@ -96,7 +96,7 @@ const StarIcon = () => (
 
 // Constants
 const treatments = [
-  'Dental Checkup',
+  'General Checkup',
   'Teeth Cleaning',
   'Cavity Filling',
   'Root Canal',

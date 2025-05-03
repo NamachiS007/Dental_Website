@@ -1,0 +1,122 @@
+/* src/components/TreatmentDetails.css */
+.treatment-details {
+  padding: 10px 0;
+}
+
+.treatment-details h2 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.treatment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.patient-info h3 {
+  margin-top: 0;
+  color: #343a40;
+  font-size: 24px;
+}
+
+.patient-info p,
+.appointment-info p {
+  margin: 5px 0;
+  color: #6c757d;
+}
+
+.appointment-info {
+  text-align: right;
+}
+
+.treatment-section {
+  margin-bottom: 30px;
+}
+
+.treatment-section h4 {
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.procedures-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.procedures-table th,
+.procedures-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.procedures-table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+}
+
+.total-label {
+  text-align: right;
+  font-weight: bold;
+}
+
+.total-amount {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.medications-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.medications-list li {
+  margin-bottom: 8px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.documents-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.documents-list li {
+  margin-bottom: 8px;
+}
+
+.documents-list a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.documents-list a:hover {
+  text-decoration: underline;
+}
+
+.document-type {
+  color: #6c757d;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.no-treatment-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.no-treatment-selected p {
+  color: #6c757d;
+  font-size: 18px;
+}
